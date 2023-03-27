@@ -5,23 +5,34 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-puts "🌱 seeding"
+puts"Start seeding..."
 
-puts "🦸‍♀️ heros"
-heros = []
-10.times do
-    heros << Hero.create(name: Faker::Name.name, super_name: Faker::Superhero.name )
-end
+powers = [
+  {name:"super strength",description: "gives the wielder super human strengths"},
+  {name:"flight",description: "gives the wielder the ability to fly through the skys at supersonic speed"},
+  {name:"super human senses",description: "allows the person to user their senses at super human level"},
+  {name:"elasticity",description: "can stretch the human body to extreme lengths"}
+]
 
-puts "⚡ powers"
-powers = []
-5.times do
-    powers << Power.create(name: Faker::Superhero.power, description: Faker::Lorem.paragraph_by_chars(number: rand(20..30), supplemental: false))
-end
+puts "creating powers..."
 
-puts "🦸‍♀️ hero_powers ⚡"
-10.times do
-    HeroPower.create(strength: ["Strong", "Weak", "Average"].sample, hero_id: heros.sample.id, power_id: powers.sample.id)
-end
+powers.each { |power| Power.create(power) }
 
-puts "😀 done seeding"
+heros = [
+  {name:"Peter Parker", super_name:"Spider-Man"},
+  {name:"Steve Rogers", super_name:"Captain America"},
+  {name:"Bruce Banner", super_name:"Hulk"},
+  {name:"Natasha Romanoff", super_name:"Black Widow"},
+  {name:"Matthew Murdock", super_name:"Dare Devil"},
+  {name:"Reed Richards", super_name:"Mr.Fantastic"},
+  {name:"T'Challa", super_name:"Black Panther"},
+  {name:"Thor Odinson", super_name:"Thor"},
+  {name:"Tony Stark", super_name:"Iron Man"},
+  {name:"Carol Danvers", super_name:"Captain Marvel"} 
+]
+
+puts "creating heroes..."
+
+heros.each { |hero| Hero.create(hero) }
+
+puts "Done."
