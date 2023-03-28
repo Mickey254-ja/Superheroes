@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  resources :hero_powers, only: [:index, :create]
+  resources :heros, only: [:index, :show]
   resources :powers, only: [:index, :show, :update]
-  # resources :heros, only: [:index, :show]
-
-  get '/heros', to: 'heros#index'
-  get '/heros/:id', to: 'heros#show'
+  resources :hero_power, only: [:create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
